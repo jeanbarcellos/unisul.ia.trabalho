@@ -12,6 +12,12 @@ class CarteiraDados
 {
 
     /**
+     * Guarda a instância do Singleton
+     * @var CarteiraDados 
+     */
+    public static $instance;
+    
+    /**
      * Array de Rótulo Meses
      * @var array 
      */
@@ -28,7 +34,11 @@ class CarteiraDados
      * @var array 
      */
     private $valores;
-
+    
+    
+    /**
+     * Recupera os dados
+     */
     private function __construct()
     {
         $this->recuperaAcoes();
@@ -39,19 +49,21 @@ class CarteiraDados
     /**
      * Retorna uma instãncia dos Dados
      * 
-     * @staticvar type $instance
+     * @staticvar CarteuraDadis $instance
      * @return \static
-     */
+     */        
     public static function getInstance()
     {
-        static $instance = null;
-        if (null === $instance) {
+        if (self::$instance === null) {
             $instance = new static();
         }
 
         return $instance;
     }
 
+    /**
+     * Carrega as ações em memória 
+     */
     private function recuperaAcoes()
     {
         $acoes = array(
@@ -68,6 +80,9 @@ class CarteiraDados
         $this->labelAcoes = $acoes;
     }
 
+    /**
+     * Carrega os Meses em memória
+     */
     private function recuperaMeses()
     {
         $meses = array();
@@ -77,6 +92,9 @@ class CarteiraDados
         $this->labelMeses = $meses;
     }
 
+    /**
+     * Carrega os valores das ações em memória
+     */
     private function recuperaValores()
     {
         $valores[1] = array(1 => 0.09091, 0.07197, 0.09661, 0.04516, 0.05864, -0.00192, 0.11404, 0.06388, -0.05679, -0.03141, 0.05676, -0.08493);
@@ -147,10 +165,14 @@ class CarteiraDados
         return $this->valores[$indice];
     }
 
-    public function getAcaoCount(){
+    /**
+     * Retorna a quantidade de ações
+     * @return int
+     */
+    public function getAcaoCount()
+    {
         return count($this->valores);
     }
-
 
     /**
      * Retorna o total anual de uma ação
