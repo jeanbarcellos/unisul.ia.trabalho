@@ -16,12 +16,12 @@ $valores[8] = array(1 => -0.00011, -0.00011, 0.07655, -0.02306, -0.0335, -0.0878
 $valores[9] = array(1 => 0.00579, 0.01336, -0.04575, 0.00996, 0.01169, 0.00199, -0.03001, -0.00699, 0.00709, 0.09798, -0.04462, -0.02473);
 $valores[10] = array(1 => -0.00045, 0.07992, 0.099, 0.00696, 0.00697, -0.00978, 0.03891, 0.00579, -0.03813, 0.09798, -0.04462, -0.02473);
 
-$porcent = array(1 => 0.3, 0.25, 0.20, 0.15, 0.10, 0.0, 0.0, 0.0, 0.0, 0.0);
+$investimento = array(1 => 0.3, 0.25, 0.20, 0.15, 0.10, 0.0, 0.0, 0.0, 0.0, 0.0);
 
-//$porcent = [1 => 0.25, 0.3, 0.20, 0.15, 0.10, 0.0, 0.0, 0.0, 0.0, 0.0];
+//$investimento = [1 => 0.25, 0.3, 0.20, 0.15, 0.10, 0.0, 0.0, 0.0, 0.0, 0.0];
 // Mistura array;
 if (isset($_GET['aleatorio'])) {
-    shuffle($porcent);
+    shuffle($investimento);
 }
 
 // Calcula retorno mensal da ação --------
@@ -31,7 +31,7 @@ for ($m = 1; $m <= 12; $m++) {
     $retornos[$m] = 0;
     for ($a = 1; $a <= 10; $a++) {
         $valor = $valores[$a][$m];
-        $valorRetornoAcao = $valor * $porcent[$a];
+        $valorRetornoAcao = $valor * $investimento[$a];
         $valorRetornoMes = $retornos[$m] + $valorRetornoAcao;
         $retornos[$m] = $valorRetornoMes;
     }
@@ -74,7 +74,7 @@ for ($m = 1; $m <= 12; $m++) {
 $htmlFoot .= "<tr>";
 $htmlFoot .= "<td>Escolha</td>";
 for ($a = 1; $a <= 10; $a++) {
-    $htmlFoot .= "<td><b>" . formatarPorcenagem($porcent[$a]) . "%</b></td>";
+    $htmlFoot .= "<td><b>" . formatarPorcenagem($investimento[$a]) . "%</b></td>";
 }
 $htmlFoot .= "<td style=\"background: #CCC; font-weight:bold; color: blue\">" . formatarDouble($totalAnual) . "</td>";
 $htmlFoot .= "</tr>";
@@ -93,7 +93,7 @@ $htmlFoot .= "<tr>";
 $htmlFoot .= "<td>Retorno Ação</td>";
 $total = 0;
 for ($a = 1; $a <= 10; $a++) {
-    $mesAp = $totalAnualAcao[$a] * $porcent[$a];
+    $mesAp = $totalAnualAcao[$a] * $investimento[$a];
     $total = $total + $mesAp;
     $htmlFoot .= "<td>" . formatarDouble($mesAp) . " </td>";
 }

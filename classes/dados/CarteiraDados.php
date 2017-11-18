@@ -147,6 +147,11 @@ class CarteiraDados
         return $this->valores[$indice];
     }
 
+    public function getAcaoCount(){
+        return count($this->valores);
+    }
+
+
     /**
      * Retorna o total anual de uma ação
      * 
