@@ -25,7 +25,7 @@ class Vizinho
 
     /**
      * Carrega o vetor inicial e extrai os vizinhos
-     * 
+     *
      * @param array $vetorInicial
      */
     function __construct(array $vetorInicial)
@@ -41,27 +41,33 @@ class Vizinho
     private function extrairVizinhos()
     {
         $inicial = $this->vetorInicial;
+        $tam = count($inicial);
         $i = 0;
         $posFix = 1;
         $posVizIni = 2;
 
         $lacos = 0;
 
-        for ($posFix = 1; $posFix <= 10; $posFix++) {
+        for ($posFix = 1; $posFix <= $tam; $posFix++) {
 
-            for ($posViz = $posVizIni; $posViz <= 10; $posViz++) {
+            for ($posViz = $posVizIni; $posViz <= $tam; $posViz++) {
                 $iteracao[$i] = $inicial;
 
-                for ($p = 1; $p <= 10; $p++) {
+//                var_dump($posViz);
+
+                for ($p = 1; $p <= $tam; $p++) {
                     $lacos++;
 
                     if ($p == $posViz) {
+
                         // Grava valores temps para realizar ...
                         $posFixTemp = $iteracao[$i][$posFix];
                         $posVizTemp = $iteracao[$i][$posViz];
 
                         // Caso os vizinhos possuam o mesmo valor, sobreescreve
-                        if ($posFixTemp == 0 && $posFixTemp == 0) {
+//                        if ($posFixTemp == 0 && $posVizTemp == 0) {
+                        if ($posFixTemp == $posVizTemp) {
+                            unset($iteracao[$i]);
                             $i--;
                         } else {
                             // ... a troca entre vizinhos
@@ -77,8 +83,6 @@ class Vizinho
 
             $posVizIni++;
         }
-
-        array_pop($iteracao);
 
         $this->vetorVizinhos = $iteracao;
     }

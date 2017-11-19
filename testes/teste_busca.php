@@ -2,6 +2,8 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/core/autoloader.php';
 
+//TesteDesempenho::inicio();
+
 $vetorInicial = array(1 => 0.3, 0.25, 0.20, 0.15, 0.10, 0.0, 0.0, 0.0, 0.0, 0.0);
 
 $carteira = new Carteira($vetorInicial);
@@ -14,23 +16,21 @@ $vizinhos = $vizinho->getVetorVizinhos();
 $melhorVizinho = 0;
 $melhorVizinhoInvest = array();
 
-$busca = array();
+$memoria = array();
 
 foreach ($vizinhos as $vizinho) {
-
     $cart = new Carteira($vizinho);
-    $rertornoCarteira = $cart->getRetornoCarteira();
-
-    $rest['retorno'] = $rertornoCarteira;
     $rest['vizinho'] = $vizinho;
-    $busca[] = $rest;
+    $rest['retornoAcao'] = $cart->getListaRetornoAnual();
+    $rest['retornoCarteira'] = $cart->getRetornoCarteira();
+    $memoria[] = $rest;
 }
 
 $indiceMaior = 0;
 $valorMaior = 0;
 
-foreach ($busca as $key => $valor) {
-    $retorno = $valor['retorno'];
+foreach ($memoria as $key => $valor) {
+    $retorno = $valor['retornoCarteira'];
     
     if ($retorno > $valorMaior) {
         $indiceMaior = $key;
@@ -38,7 +38,8 @@ foreach ($busca as $key => $valor) {
     }
 }
 
-var_dump($busca[$indiceMaior]);
+//var_dump($memoria);
+var_dump($memoria[$indiceMaior]);
 
 
 
@@ -64,7 +65,7 @@ var_dump($busca[$indiceMaior]);
 
 
 
-
+//TesteDesempenho::fim();
 
 
 

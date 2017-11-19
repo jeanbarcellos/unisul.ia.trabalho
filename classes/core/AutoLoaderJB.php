@@ -45,7 +45,8 @@ class AutoLoaderJB
         $dirs = array(
             'classes/dados',
             'classes/heuristica',
-            'classes/presentation'
+            'classes/presentation',
+            'classes/utils'
         );
 
         $this->loaderApp = new AutoloaderApp();

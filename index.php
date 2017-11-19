@@ -24,6 +24,7 @@ if (isset($_GET['aleatorio'])) {
     shuffle($investimento);
 }
 
+
 // Calcula retorno mensal da ação --------
 $retornos = array();
 $totalAnual = 0;

@@ -1,5 +1,9 @@
 <?php
 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/core/autoloader.php';
+
+//TesteDesempenho::inicio();
+
 $inicial = array(1 => 0.3, 0.25, 0.20, 0.15, 0.10, 0.0, 0.0, 0.0, 0.0, 0.0);
 //$inicial = array(1 => 0.20, 0.15, 0.3, 0.25, 0.10, 0.0, 0.0, 0.0, 0.0, 0.0);
 
@@ -23,7 +27,7 @@ for ($posFix = 1; $posFix <= 10; $posFix++) {
                 $posVizTemp = $iteracao[$i][$posViz];
 
                 // Caso os vizinhos possuam o mesmo valor, sobreescreve
-                if ($posFixTemp == 0 && $posFixTemp == 0) {
+                if ($posFixTemp == 0 && $posVizTemp == 0) {
                     $i--;
                 } else {
                     // ... a troca entre vizinhos
@@ -52,3 +56,4 @@ for ($j = 1; $j <= count($iteracao); $j++) {
 echo "$html <br> ";
 
 
+//TesteDesempenho::fim();
