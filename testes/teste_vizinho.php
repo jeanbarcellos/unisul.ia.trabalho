@@ -35,7 +35,7 @@ if (isset($_GET['aleatorio'])) {
 $libVizinho = new Vizinho($inicial);
 
 $vizinhos = $libVizinho->getVetorVizinhos();
-$iteracoes = $libVizinho->getIteracoesQtd();
+$iteracoes = $libVizinho->getIteracoesSize();
 
 for ($j = 0; $j < count($vizinhos); $j++) {
     $html .= " " . $j . " = " . implode(' | ', $vizinhos[$j]) . "<br>";

@@ -37,6 +37,8 @@ class Vizinho
     /**
      * Extrai todos os vizinhos possíveis alternando entre os valores
      * 30% 25% 20% 15% 10%
+     * 
+     * @return void
      */
     private function extrairVizinhos()
     {
@@ -44,7 +46,7 @@ class Vizinho
         $tam = count($inicial);
         $i = 0;
         $posFix = 1;
-        $posVizIni = 2;
+        $posVizIni = $posFix + 1;
 
         $lacos = 0;
 
@@ -53,19 +55,15 @@ class Vizinho
             for ($posViz = $posVizIni; $posViz <= $tam; $posViz++) {
                 $iteracao[$i] = $inicial;
 
-//                var_dump($posViz);
-
                 for ($p = 1; $p <= $tam; $p++) {
                     $lacos++;
 
                     if ($p == $posViz) {
-
                         // Grava valores temps para realizar ...
                         $posFixTemp = $iteracao[$i][$posFix];
                         $posVizTemp = $iteracao[$i][$posViz];
 
-                        // Caso os vizinhos possuam o mesmo valor, sobreescreve
-//                        if ($posFixTemp == 0 && $posVizTemp == 0) {
+                        // Caso os vizinhos possuam o mesmo valor.
                         if ($posFixTemp == $posVizTemp) {
                             unset($iteracao[$i]);
                             $i--;
@@ -73,7 +71,7 @@ class Vizinho
                             // ... a troca entre vizinhos
                             $iteracao[$i][$posFix] = $posVizTemp;
                             $iteracao[$i][$posViz] = $posFixTemp;
-                            $p = 11;
+                            $p = 11; // Se fez a troca, então cai fora do for
                         }
                     }
                 }
@@ -94,7 +92,7 @@ class Vizinho
      */
     public function setVetorInicial($vetorInicial)
     {
-        // Corrige os indices
+        // Corrige os indices (caso espefícido da base de dados)
         $j = 1;
         $corrigido = array();
         foreach ($vetorInicial as $valor) {
@@ -128,9 +126,9 @@ class Vizinho
     /**
      * Retorna o número total de ações
      *
-     * @return int
+     * @return int 
      */
-    public function getIteracoesQtd()
+    public function getIteracoesSize()
     {
         return count($this->vetorVizinhos);
     }

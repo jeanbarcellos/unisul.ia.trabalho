@@ -19,7 +19,7 @@ class AutoLoaderJB
 
     public function __construct()
     {
-        $this->basePath = $_SERVER['DOCUMENT_ROOT'] . "";
+        $this->basePath = $_SERVER['DOCUMENT_ROOT'] . "/";
     }
 
     /**
@@ -28,7 +28,7 @@ class AutoLoaderJB
     private function registerClass()
     {
 //        require_once $this->basePath . "/Vendor/Barcellos/Core/AutoLoaderClass.php";
-        require_once $this->basePath . "/core/AutoLoaderClass.php";
+        require_once $this->basePath . "core/AutoLoaderClass.php";
 
         $this->loaderClass = new AutoloaderClass();
         $this->loaderClass->addNamespace('Barcellos', 'Vendor/Barcellos');
@@ -40,11 +40,11 @@ class AutoLoaderJB
      */
     private function registerApp()
     {
-        require_once $this->basePath . "/classes/core/AutoloaderApp.php";
+        require_once $this->basePath . "classes/core/AutoloaderApp.php";
 
         $dirs = array(
-            'classes/dados',
-            'classes/heuristica',
+            'classes/data',
+            'classes/logic',
             'classes/presentation',
             'classes/utils'
         );

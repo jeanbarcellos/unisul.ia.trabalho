@@ -3,15 +3,7 @@
 /**
  * Classe para realizar testes de tempo de execução e consumo de memória.
  * 
- * @author Jean Barcellos <jean@equipedigital.com> 
- * @copyright Copyright (c) 2009-2016, EquipeDigital.com
- * @link http://www.equipedigital.com
- * @license Comercial    
- *
- * @Data_Criacao 02/06/2017 
- * @Ultima_Modif 02/06/2017 por Jean Barcellos
- *
- * @package Libs
+ * @author Jean Barcellos <jeanbarcellos@hotmail.com> 
  *
  */
 class TesteDesempenho

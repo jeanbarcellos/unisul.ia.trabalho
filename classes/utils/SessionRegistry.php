@@ -7,16 +7,8 @@
  * OBS: Caso não queira utilizar $_SESSION para manipular o registro, 
  * você pode alterar o escopo dos métodos desta classe para MySQL ou outro tipo.<br>
  * 
- * @author Jean Barcellos <jean@equipedigital.com> 
- * @copyright Copyright (c) 2009-2016, EquipeDigital.com
- * @link http://www.equipedigital.com
- * @license Comercial    
- *
- * @Data_Criacao 23/02/2017 
- * @Ultima_Modif 23/02/2017 por Jean Barcellos
- *
- * @package Libs
- *
+ * @author Jean Barcellos <jeanbarcellos@hotmail.com> 
+ * 
  */
 class SessionRegistry
 {
