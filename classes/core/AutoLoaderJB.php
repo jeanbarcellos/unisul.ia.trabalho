@@ -19,7 +19,8 @@ class AutoLoaderJB
 
     public function __construct()
     {
-        $this->basePath = $_SERVER['DOCUMENT_ROOT'] . "/";
+//        $this->basePath = $_SERVER['DOCUMENT_ROOT'] . "/";
+        $this->basePath = "";
     }
 
     /**
@@ -52,8 +53,8 @@ class AutoLoaderJB
         $this->loaderApp = new AutoloaderApp();
 
         foreach ($dirs as $value) {
-//            $this->loaderApp->addDirectory($value);
-            $this->loaderApp->addDirectory($this->basePath . "/" . $value);
+            $this->loaderApp->addDirectory($value);
+//            $this->loaderApp->addDirectory($this->basePath . "/" . $value);
         }
 
         $this->loaderApp->register();

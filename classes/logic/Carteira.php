@@ -179,14 +179,35 @@ class Carteira
     }
 
     /**
+     * Retorna a matriz de dados com todas as ações
+     * 
+     * @return array
+     */
+    public function getValores()
+    {
+        return $this->dao->getValores();
+    }
+
+    /**
      * Retorna um vetor com os valores mensais de uma ação
      *
-     * @param type $indice
-     * @return type
+     * @param int $indice
+     * @return Array
      */
     public function getValoresAcao($indice)
     {
         return $this->dao->getAcao($indice);
+    }
+
+    /**
+     * Retorna um valor específco a parte do numero da ação e do mês informados
+     * 
+     * @param type $acao
+     * @param type $mes
+     */
+    public function getValorAcaoMes($acao, $mes)
+    {
+        return $this->dao->getValorAcaoMes($acao, $mes);
     }
 
     /**
@@ -261,9 +282,25 @@ class Carteira
         return $this->listaRetornoMensal[$indice];
     }
 
+    /**
+     * Retorna o investimento realizado em cada aão
+     * 
+     * @param int $indice Índice da ação
+     * @return float Porcentagem do investimento
+     */
     public function getInvestimentoAcao($indice)
     {
         return $this->investimento[$indice];
+    }
+
+    public function getLabelAcaos()
+    {
+        return $this->dao->getLabelAcoes();
+    }
+
+    public function getLabelMeses()
+    {
+        return $this->dao->getLabelMeses();
     }
 
 }

@@ -16,7 +16,7 @@ class CarteiraDados
      * @var CarteiraDados 
      */
     public static $instance;
-    
+
     /**
      * Array de Rótulo Meses
      * @var array 
@@ -34,8 +34,7 @@ class CarteiraDados
      * @var array 
      */
     private $valores;
-    
-    
+
     /**
      * Recupera os dados
      */
@@ -51,7 +50,7 @@ class CarteiraDados
      * 
      * @staticvar CarteuraDadis $instance
      * @return \static
-     */        
+     */
     public static function getInstance()
     {
         if (self::$instance === null) {
@@ -138,6 +137,18 @@ class CarteiraDados
     public function getValores()
     {
         return $this->valores;
+    }
+
+    /**
+     * Retorna um valor específco a parte do numero da ação e do mês informados
+     * 
+     * @param int $acao
+     * @param int $mes
+     * @return float
+     */
+    public function getValorAcaoMes($acao, $mes)
+    {
+        return $this->valores[$acao][$mes];
     }
 
     /**

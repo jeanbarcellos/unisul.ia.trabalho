@@ -19,9 +19,10 @@ var_dump($labelAcoes);
 //$mes2 = $dao->getMes(2);
 var_dump($mes2);
 
-
+// Adados da ação 1
 $acaoA = $dao->getAcao(1);
 var_dump($acaoA);
 
+// Total Ação 1
 $acaoATotalAnual = $dao->getTotalAnualAcao(1);
 var_dump($acaoATotalAnual);
