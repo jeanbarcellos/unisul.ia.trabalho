@@ -1,6 +1,6 @@
 <?php
 
-namespace Barcellos\Core;
+//namespace Barcellos\Core;
 
 /**
  * Psr4AutoloaderClass

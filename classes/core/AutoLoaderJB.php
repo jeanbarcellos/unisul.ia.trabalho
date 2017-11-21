@@ -1,9 +1,9 @@
 <?php
 
-namespace Barcellos\Core;
-
-use Barcellos\Core\AutoloaderClass;
-use Barcellos\Core\AutoloaderApp;
+//namespace Barcellos\Core;
+//
+//use Barcellos\Core\AutoloaderClass;
+//use Barcellos\Core\AutoloaderApp;
 
 /**
  * Autoloader Jean Barcellos

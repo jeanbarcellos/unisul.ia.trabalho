@@ -1,10 +1,10 @@
 <?php
 
-namespace Barcellos\Core;
-
-use RecursiveIteratorIterator;
-use RecursiveDirectoryIterator;
-use Exception;
+//namespace Barcellos\Core;
+//
+//use RecursiveIteratorIterator;
+//use RecursiveDirectoryIterator;
+//use Exception;
 
 /**
  * Carrega a classe da aplicação
