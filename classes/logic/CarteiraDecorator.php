@@ -30,9 +30,9 @@ class CarteiraDecorator
         $this->carteira = $carteira;
     }
 
-    public function showFull()
+    public function showLight()
     {
-        
+        echo $this->render();        
     }
 
     public function show()
@@ -46,7 +46,7 @@ class CarteiraDecorator
         $thml .= $this->montarCab();
         $thml .= $this->montarDados();
         $thml .= $this->montarEscolha();
-        $thml .= $this->montarTotalMes();
+        $thml .= $this->montarTotalAnual();
         $thml .= $this->montarRetornoAnual();
         $thml .= "</table>";
         return $thml;
@@ -56,7 +56,7 @@ class CarteiraDecorator
     {
         $thml = "<table>";
         $thml .= $this->montarCab();
-        $thml .= $this->montarTotalMes();
+        $thml .= $this->montarTotalAnual();
         $thml .= $this->montarEscolha();
         $thml .= $this->montarRetornoAnual();
         $thml .= "</table>";
@@ -121,7 +121,7 @@ class CarteiraDecorator
         return $html;
     }
 
-    private function montarTotalMes()
+    private function montarTotalAnual()
     {
 
         $html .= "<tr>";

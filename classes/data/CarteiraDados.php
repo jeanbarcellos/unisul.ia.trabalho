@@ -54,7 +54,7 @@ class CarteiraDados
     public static function getInstance()
     {
         if (self::$instance === null) {
-            $instance = new static();
+            $instance = new CarteiraDados();
         }
 
         return $instance;
