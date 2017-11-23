@@ -10,6 +10,9 @@ $busca = new Busca($vetorInicial);
 $busca->executar();
 $carteiras = $busca->getCarteiras();
 
+$memoria = $busca->getMemoria();
+var_dump($memoria);
+
 foreach ($carteiras as $cart) {
     $inves = $cart->getInvestimento();
     $retorno = $cart->getRetornoCarteira();

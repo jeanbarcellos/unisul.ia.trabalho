@@ -12,14 +12,13 @@ class Carteira
 {
 
     /**
-     * DAO da carteira
+     * Dados da carteira
      * @var CarteiraDados
      */
     private $dao;
 
     /**
      * Vetor com o investimento
-     *
      * @var array
      */
     private $investimento;
@@ -32,21 +31,18 @@ class Carteira
 
     /**
      * Retorno anual de cada ação calculada a partir do investimento
-     *
      * @var array
      */
     private $listaRetornoAnual;
 
     /**
      * Retorna o retorno mensal das 10 ações
-     *
      * @var array
      */
     private $listaRetornoMensal;
 
     /**
      * Retorno anual da carteira
-     *
      * @var float
      */
     private $retornoCarteira;

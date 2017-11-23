@@ -4,8 +4,8 @@ require_once 'classes/core/autoloader.php';
 
 TesteDesempenho::inicio();
 
+// Investimento inicial
 $vetorInicial = array(0.3, 0.25, 0.20, 0.15, 0.10, 0.0, 0.0, 0.0, 0.0, 0.0);
-
 
 // Aleatoriza o array;
 if (isset($_GET['aleatorio'])) {
@@ -16,9 +16,11 @@ if (isset($_GET['aleatorio'])) {
 // Escolhe a versão a ser exibida
 $versao = 2;
 $link_vers = "versao=1";
-if (isset($_GET['versao'])) {
+$label_vers = "Completa";
+if ($_GET['versao'] == 1) {
     $versao = 1;
     $link_vers = "versao=2";
+    $label_vers = "Compacta";
 }
 
 // BUSCA
@@ -30,6 +32,17 @@ $busca->executar();
 // Melhores carteiras encontradas
 $carteiras = $busca->getCarteiras();
 
+// Carteira Inicial
+$decorator = new CarteiraDecorator($busca->getCarteiraInicial());
+
+if ($versao == 1) {
+    $tabela .= $decorator->render();
+} else {
+    $tabela .= $decorator->renderLight();
+}
+
+
+// Carteiras da Busca
 foreach ($carteiras as $carteira) {
 
     $decorator = new CarteiraDecorator($carteira);
@@ -42,30 +55,29 @@ foreach ($carteiras as $carteira) {
 }
 
 
-$css = "
-    <style>
-    body, td ,th, input, select, option, textarea {
-        font-family: courier, Arial, Helvetica, sans-serif;
-        font-size: 14px;
-        line-height: 1.25em;
-    }
-    table {border-collapse:collapse; border-spacing:0; margin-bottom: 20px;}
-    th, td, caption {font-weight:normal; vertical-align:top; text-align:left}
-    td, th { border: 1px solid #111; padding: 2px 5px}
-    th {text-align:center; background:#adc8ff; font-weight:bold;}
-    td {text-align:right}
-    </style>
-    <br>
-";
+$escolha = implode(',', $vetorInicial);
 
+/*
+ * Monta o HTM final
+ */
 $html = "
-    $css
+    <div id=\"nav\">
+      <a href=\"index.php?inicial=1\">Inicial</a> | 
+      <a href=\"index.php?aleatorio=1\">Busca Aleatoria</a> | 
+      <a href=\"index.php?$link_aleat" . "$link_vers\">Versão $label_vers</a> |
+      <a href=\"relatorio.php?acao=add&escolha=$escolha\">Add no relatório</a> | 
+      <a href=\"relatorio.php?acao=ver\">Ver relatório</a> | 
+    </div>
     $tabela
-    <a href=\"?aleatorio=1\">Aleatório</a> | <a href=\"?\">Inicial</a> | <a href=\"?$link_aleat&$link_vers\">Versão</a>
 ";
 
-echo $html;
+$replaces['body'] = $html;
 
+/*
+ * Lança seleciona o template e exibe
+ */
+$tpl = new Template('includes/template.html');
+$tpl->setParams($replaces);
+$tpl->show();
 
-TesteDesempenho::fim();
 

@@ -52,13 +52,13 @@ class Busca
         // Seta o vetor inicial
         $this->vetorInicial = $vetorInicial;
 
+        // Instancia a carteira inicial
         $carteira = new Carteira($vetorInicial);
 
-        // Instancia a carteira inicial
+        // Seta a carteira inicial para comparações futuras
         $this->carteiraInicial = $carteira;
 
-        // Copia a carteira inicial como melhor carteira atual 
-        // para dar início a busca
+        // Copia a carteira inicial como melhor carteira atual para dar início a busca
         $this->melhorCarteira = $carteira;
     }
 
@@ -72,7 +72,7 @@ class Busca
         // Memória temporaria da busca
         $memoriaTemp = array();
 
-        // Instancia instancia, procura e lista os vizinhos da melhor carteira atual
+        // Instancia, procura e lista os vizinhos da melhor carteira atual
         $vizinho = new Vizinho($this->melhorCarteira->getInvestimento());
         $listaVizinhos = $vizinho->getVetorVizinhos();
 
@@ -85,6 +85,7 @@ class Busca
         $indiceMaior = 0;
         $valorMaior = 0;
 
+        // Iteração para achar o melhor vizinho da iteração (com melhor retorno)
         foreach ($memoriaTemp as $key => $carteira) {
             $retorno = $carteira->getRetornoCarteira();
 
@@ -94,20 +95,26 @@ class Busca
             }
         }
 
+        // Guarda a melhor carteira da iteração
         $melhorCarteiraTemp = $memoriaTemp[$indiceMaior];
 
         $retornoCarteiraTemp = $melhorCarteiraTemp->getRetornoCarteira();
         $retornoCarteiraMelhor = $this->melhorCarteira->getRetornoCarteira();
 
-        // Verifica se a melhor carteira encontrada é mlehor que a atual ...
+        // Verifica se a melhor carteira encontrada é maior que a atual.
         if ($retornoCarteiraTemp > $retornoCarteiraMelhor) {
             $this->carteiras[] = $melhorCarteiraTemp;
             $this->melhorCarteira = $melhorCarteiraTemp;
 
             // Caso a carteira atual seja melhor que a anterior
-            // Executa novamente até encontrar o melhor retorno
+            // Realiza uma nova iteração até encontrar o melhor retorno.
             $this->executar();
         }
+    }
+
+    public function getVetorInicial()
+    {
+        return $this->vetorInicial;
     }
 
     /**
@@ -121,9 +128,9 @@ class Busca
     }
 
     /**
-     * Retorna a memória de busca, ou seja, todas as carteiras que a busa utilizou
+     * Retorna a memória de busca, ou seja, todas as carteiras que a busca testou
      * 
-     * @return array Array de carteras
+     * @return array Array com carteiras todas as carteiras percorridas
      */
     public function getMemoria()
     {
@@ -153,7 +160,7 @@ class Busca
     /**
      * Retorna o tamanho do vetor de melhores carteiras encontradas
      * 
-     * @return int
+     * @return int Quantidade de carteiras
      */
     public function getCarteirasSize()
     {
@@ -163,7 +170,7 @@ class Busca
     /**
      * Retorna o tamanho do vetor de carteiras armazenadas na memória
      * 
-     * @return int
+     * @return int Quantidade de carteiras na memória de cálculo
      */
     public function getMemoriaSize()
     {

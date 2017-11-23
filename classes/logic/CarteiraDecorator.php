@@ -32,7 +32,7 @@ class CarteiraDecorator
 
     public function showLight()
     {
-        echo $this->render();        
+        echo $this->render();
     }
 
     public function show()
@@ -42,7 +42,7 @@ class CarteiraDecorator
 
     public function render()
     {
-        $thml = "<table>";
+        $thml = "<table class=\"carteira\">";
         $thml .= $this->montarCab();
         $thml .= $this->montarDados();
         $thml .= $this->montarEscolha();
@@ -54,12 +54,18 @@ class CarteiraDecorator
 
     public function renderLight()
     {
-        $thml = "<table>";
+        $thml = "<table class=\"carteira light\">";
         $thml .= $this->montarCab();
         $thml .= $this->montarTotalAnual();
         $thml .= $this->montarEscolha();
         $thml .= $this->montarRetornoAnual();
         $thml .= "</table>";
+        return $thml;
+    }
+
+    public function renderRelatorio()
+    {
+        $thml = "Relatório";
         return $thml;
     }
 
@@ -97,7 +103,7 @@ class CarteiraDecorator
 
             $retornoMes = $this->carteira->getRetornolMensal($m);
 
-            $html .= "<td><b>" . StringHelper::formatarDouble($retornoMes) . "</b></td>";
+            $html .= "<td class=\"row-retorno-mensal\"><b>" . StringHelper::formatarDouble($retornoMes) . "</b></td>";
 
             $html .= "</tr>";
         }
@@ -107,15 +113,15 @@ class CarteiraDecorator
 
     private function montarEscolha()
     {
-        $retornoCarteira = $this->carteira->getRetornoCarteira();
+//        $retornoCarteira = $this->carteira->getRetornoCarteira();
 
-        $html .= "<tr>";
+        $html .= "<tr class=\"row-investimento\">";
         $html .= "<td>Escolha</td>";
         for ($a = 1; $a <= 10; $a++) {
             $invest = $this->carteira->getInvestimentoAcao($a);
-            $html .= "<td><b>" . StringHelper::formatarPorcenagem($invest) . "%</b></td>";
+            $html .= "<td>" . StringHelper::formatarPorcenagem($invest) . "%</td>";
         }
-        $html .= "<td style=\"background: #CCC; font-weight:bold; color: blue\">" . StringHelper::formatarDouble($retornoCarteira) . "</td>";
+        $html .= "<td class=\"col-resul\">100%</td>";
         $html .= "</tr>";
 
         return $html;
@@ -124,13 +130,13 @@ class CarteiraDecorator
     private function montarTotalAnual()
     {
 
-        $html .= "<tr>";
-        $html .= "<td>TotalMês</td>";
+        $html .= "<tr class=\"row-total-anual\">";
+        $html .= "<td>Soma Mêses</td>";
         for ($a = 1; $a <= 10; $a++) {
             $totalAnualAcao = $this->carteira->getTotalAnual($a);
             $html .= "<td>" . StringHelper::formatarDouble($totalAnualAcao) . " </td>";
         }
-        $html .= "<td></td>";
+        $html .= "<td class=\"col-resul\"></td>";
         $html .= "</tr>";
 
         return $html;
@@ -140,17 +146,22 @@ class CarteiraDecorator
     {
         $retornoCarteira = $this->carteira->getRetornoCarteira();
 
-        $html .= "<tr>";
+        $html .= "<tr class=\"row-retorno\">";
         $html .= "<td>Retorno Ação</td>";
         for ($a = 1; $a <= 10; $a++) {
             $retornoAno = $this->carteira->getRetornoAnual($a);
 
             $html .= "<td>" . StringHelper::formatarDouble($retornoAno) . " </td>";
         }
-        $html .= "<td style=\"background: #CCC; font-weight:bold; color: blue\">" . StringHelper::formatarDouble($retornoCarteira) . "</td>";
+        $html .= "<td class=\"cell-retorno-carteira\">" . StringHelper::formatarDouble($retornoCarteira) . "</td>";
         $html .= "</tr>";
 
         return $html;
     }
 
 }
+
+/*
+style=\"background: #CCC; font-weight:bold; color: blue\"
+
+*/
