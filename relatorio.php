@@ -16,67 +16,13 @@ if ($_GET['acao'] == 'add' && $_GET['escolha'] != '') {
 
     $busca = new Busca($vetorInicial);
 
-    // Executa a busca pela melhor carteira
-    $busca->executar();
+    $decorator = new BuscaDecorator($busca);
+    $tabela = $decorator->render();
 
-    $carteiras = $busca->getCarteiras();
-    $qtdIteracoes = $busca->getCarteirasSize();
-
-    $retornoCarteiraInicial = $busca->getCarteiraInicial()->getRetornoCarteira();
-    $retornoFormat = StringHelper::formatarDouble($retornoCarteiraInicial);
-
-    $vetorInicialFormat = array_map("StringHelper::formatarPorcenagem", $busca->getVetorInicial());
-    $vetorInicial2 = implode('%, ', $vetorInicialFormat);
-
-    $retornoMelhorCarteira = $busca->getMelhorCarteira()->getRetornoCarteira();
-
-    $tabela .= "<div class=\"busca-li\">";
-    $tabela .= "<div class=\"row titulo\">Busca " . ($cont + 1) . "</div>";
-    $tabela .= "
-          <div class=\"row\">
-            <span class=\"label\">Carteira Inicial:</span> 
-            <span class=\"valor\">0 | $vetorInicial2% | Retorno anual: $retornoFormat</span>
-          </div>";
-    $tabela .= "
-          <div class=\"row\">
-            <span class=\"label\">Iterações:</span> 
-            <span class=\"valor\">
-        ";
-
-    // Carteiras da Busca
-    $i = 0;
-    foreach ($carteiras as $carteira) {
-        $i++;
-
-        $carteiraInvest = $carteira->getInvestimento();
-        $carteiraInvestFormat = array_map("StringHelper::formatarPorcenagem", $carteiraInvest);
-        $invest = implode('%, ', $carteiraInvestFormat);
-
-        $retorno = StringHelper::formatarDouble($carteira->getRetornoCarteira());
-
-        $tabela .= "" . $i . " | " . $invest . "% | Retorno Anual: " . $retorno . "<br>";
-    }
-
-    $tabela .= "\n</span></div>";
-
-    $tabela .= "
-          <div class=\"row\">
-            <span class=\"label\">Qtd iterações:</span> 
-            <span class=\"valor\">$qtdIteracoes</span>
-          </div>\n";
-    $tabela .= "
-          <div class=\"row\">
-            <span class=\"label\">Melhor retorno:</span> 
-            <span class=\"valor\">" . StringHelper::formatarDouble($retornoMelhorCarteira) . "</span>
-          </div>\n";
-
-    $tabela .= "</div>";
-
-    // Corrigir depis
     $_SESSION['buscas'][$cont] = $tabela;
 
-    Javascript::Alerta('Busca adicionada ao relatório com sucesso');
-    Javascript::Ir('/');
+//    Javascript::Alerta('Busca adicionada ao relatório com sucesso');
+    Javascript::Ir('/index.php?msg=Busca adicionada ao relatório com sucesso');
     exit;
 }
 
@@ -85,7 +31,6 @@ if ($_GET['acao'] == 'limpar') {
     Javascript::Ir('/');
     exit;
 }
-
 
 if ($_GET['acao'] == 'ver') {
 

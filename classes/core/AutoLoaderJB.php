@@ -46,6 +46,7 @@ class AutoLoaderJB
         $dirs = array(
             'classes/data',
             'classes/logic',
+            'classes/decorator',
             'classes/presentation',
             'classes/utils'
         );

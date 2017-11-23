@@ -36,9 +36,9 @@ $carteiras = $busca->getCarteiras();
 $decorator = new CarteiraDecorator($busca->getCarteiraInicial());
 
 if ($versao == 1) {
-    $tabela .= $decorator->render();
+    $html_tabela .= $decorator->render();
 } else {
-    $tabela .= $decorator->renderLight();
+    $html_tabela .= $decorator->renderLight();
 }
 
 
@@ -48,30 +48,36 @@ foreach ($carteiras as $carteira) {
     $decorator = new CarteiraDecorator($carteira);
 
     if ($versao == 1) {
-        $tabela .= $decorator->render();
+        $html_tabela .= $decorator->render();
     } else {
-        $tabela .= $decorator->renderLight();
+        $html_tabela .= $decorator->renderLight();
     }
 }
-
-
-$escolha = implode(',', $vetorInicial);
 
 /*
  * Monta o HTM final
  */
-$html = "
+$html_menu = "
     <div id=\"nav\">
       <a href=\"index.php?inicial=1\">Inicial</a> | 
       <a href=\"index.php?aleatorio=1\">Busca Aleatoria</a> | 
       <a href=\"index.php?$link_aleat" . "$link_vers\">Versão $label_vers</a> |
-      <a href=\"relatorio.php?acao=add&escolha=$escolha\">Add no relatório</a> | 
+      <a href=\"relatorio.php?acao=add&escolha=" . implode(',', $vetorInicial) . "\">Add no relatório</a> | 
       <a href=\"relatorio.php?acao=ver\">Ver relatório</a> | 
-    </div>
-    $tabela
+    </div>        
+";
+if ($_GET['msg'] != '') {
+    $html_msg = "<div class=\"aviso\">" . $_GET['msg'] . "</div>";
+}
+
+$html_final = "
+    $html_menu
+    $html_msg
+    $html_tabela
 ";
 
-$replaces['body'] = $html;
+$replaces['body'] = $html_final;
+
 
 /*
  * Lança seleciona o template e exibe

@@ -32,8 +32,8 @@ body {
 
 .linha,
 .row {
-/*    margin-left: -10px;
-    margin-right: -10px;*/
+    /*    margin-left: -10px;
+        margin-right: -10px;*/
 }
 
 /* Evita sobreposição das divs */
@@ -116,3 +116,15 @@ RELATÒRIO
     text-align: left;
 }
 
+
+
+.aviso {
+    width: 500px;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    background-color: #dff0d8;
+    border-color: #d0e9c6;
+    color: #3c763d;
+}
