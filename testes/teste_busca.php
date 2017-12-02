@@ -11,7 +11,11 @@ $busca->executar();
 $carteiras = $busca->getCarteiras();
 
 $memoria = $busca->getMemoria();
-var_dump($memoria);
+//var_dump($memoria);
+
+foreach ($memoria as $registro){
+    var_dump($registro);
+}
 
 foreach ($carteiras as $cart) {
     $inves = $cart->getInvestimento();

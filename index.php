@@ -62,7 +62,7 @@ $html_menu = "
       <a href=\"index.php?inicial=1\">Inicial</a> | 
       <a href=\"index.php?aleatorio=1\">Busca Aleatoria</a> | 
       <a href=\"index.php?$link_aleat" . "$link_vers\">Versão $label_vers</a> |
-      <a href=\"relatorio.php?acao=add&escolha=" . implode(',', $vetorInicial) . "\">Add no relatório</a> | 
+      <a href=\"relatorio.php?acao=add&escolha=" . implode(',', $vetorInicial) . "&$link_aleat\">Add no relatório</a> | 
       <a href=\"relatorio.php?acao=ver\">Ver relatório</a> | 
     </div>        
 ";

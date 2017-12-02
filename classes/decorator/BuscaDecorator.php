@@ -12,10 +12,17 @@ class BuscaDecorator
 {
 
     private $busca;
+    
+    private $numero = 0;
 
     public function __construct(Busca $busca)
     {
         $this->busca = $busca;
+    }
+
+    public function setBusca($numero)
+    {
+        $this->numero = $numero;
     }
 
     public function render()
@@ -34,7 +41,7 @@ class BuscaDecorator
         $retornoMelhorCarteira = $this->busca->getMelhorCarteira()->getRetornoCarteira();
 
         $tabela .= "<div class=\"busca-li\">";
-        $tabela .= "<div class=\"row titulo\">Busca " . ($cont + 1) . "</div>";
+        $tabela .= "<div class=\"row titulo\">Busca " . ($this->numero + 1) . "</div>";
         $tabela .= "
           <div class=\"row\">
             <span class=\"label\">Carteira Inicial:</span> 

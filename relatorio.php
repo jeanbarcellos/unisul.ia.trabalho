@@ -17,12 +17,18 @@ if ($_GET['acao'] == 'add' && $_GET['escolha'] != '') {
     $busca = new Busca($vetorInicial);
 
     $decorator = new BuscaDecorator($busca);
+    $decorator->setBusca($cont);   
     $tabela = $decorator->render();
 
     $_SESSION['buscas'][$cont] = $tabela;
 
-//    Javascript::Alerta('Busca adicionada ao relatório com sucesso');
-    Javascript::Ir('/index.php?msg=Busca adicionada ao relatório com sucesso');
+        // Aleatoriza o array;
+    if (isset($_GET['aleatorio'])) {
+        shuffle($vetorInicial);
+        $link_aleat = "&aleatorio=1";
+    }
+    
+    Javascript::Ir('/index.php?msg=Busca adicionada ao relatório com sucesso' . $link_aleat);
     exit;
 }
 
@@ -40,13 +46,12 @@ if ($_GET['acao'] == 'ver') {
 
     $tabela .= "<div class=\"relatorio\">";
 
-    $num = 0;
-    foreach ($lista_buscas as $busca) {
-        $num ++;
-
-        $tabela .= $busca;
+    if ($cont > 0) {
+        foreach ($lista_buscas as $busca) {
+            $tabela .= $busca;
+        }
     }
-
+    
     $tabela .= "</div>";
 }
 
@@ -71,4 +76,5 @@ $tpl->setParams($replaces);
 $tpl->show();
 
 
-//TesteDesempenho::fim();
+TesteDesempenho::fim();
+

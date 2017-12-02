@@ -25,14 +25,14 @@ $carteira = new Carteira($vetorInicial);
 //$litaRetornoMensal = $carteira->getListaRetornoMensal();
 //var_dump($litaRetornoMensal);
 //
-$listaTotalAnual = $carteira->getListaTotalAnual();
-var_dump($listaTotalAnual);
+//$listaTotalAnual = $carteira->getListaTotalAnual();
+//var_dump($listaTotalAnual);
 //
-$investimento = $carteira->getInvestimento();
-var_dump($investimento);
+//$investimento = $carteira->getInvestimento();
+//var_dump($investimento);
 //
-$listRetornoAnual = $carteira->getListaRetornoAnual();
-var_dump($listRetornoAnual);
+//$listRetornoAnual = $carteira->getListaRetornoAnual();
+//var_dump($listRetornoAnual);
 //
-$retornoCarteira = $carteira->getRetornoCarteira();
-var_dump($retornoCarteira);
+//$retornoCarteira = $carteira->getRetornoCarteira();
+//var_dump($retornoCarteira);
