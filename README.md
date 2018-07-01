@@ -1,4 +1,4 @@
-# unisl-ia-trabalho
+# unisul-ia-trabalho
 Heurística do Vizinho aplicado a Carteira de Investimentos
 
 Um clube de investimentos está avaliando a sua carteira de ações. O clube escolheu 10 possíveis ações para investir. 
